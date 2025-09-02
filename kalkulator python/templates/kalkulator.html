@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Tombol Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            font-size: 2em;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: right;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            width: 22%;
+            height: 60px;
+            font-size: 1.5em;
+            margin: 1%;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn.operator {
+            background-color: #FF9800;
+        }
+
+        .btn.clear {
+            background-color: #f44336;
+        }
+
+        .btn.equals {
+            width: 95%;
+            background-color: #2196F3;
+        }
+
+        @media screen and (max-width: 480px) {
+            .btn {
+                width: 22%;
+                height: 50px;
+                font-size: 1.2em;
+            }
+
+            input[type="text"] {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Kalkulator Tombol Mobile</h2>
+
+    <div class="calculator">
+        <form method="POST">
+            <input type="text" name="layar" id="layar" readonly value="{{ hasil if hasil is not none else '' }}">
+            
+            <!-- Tombol angka dan operator -->
+            <div>
+                <button type="button" class="btn" onclick="tambah('7')">7</button>
+                <button type="button" class="btn" onclick="tambah('8')">8</button>
+                <button type="button" class="btn" onclick="tambah('9')">9</button>
+                <button type="button" class="btn operator" onclick="tambah('/')">/</button>
+                
+                <button type="button" class="btn" onclick="tambah('4')">4</button>
+                <button type="button" class="btn" onclick="tambah('5')">5</button>
+                <button type="button" class="btn" onclick="tambah('6')">6</button>
+                <button type="button" class="btn operator" onclick="tambah('*')">*</button>
+                
+                <button type="button" class="btn" onclick="tambah('1')">1</button>
+                <button type="button" class="btn" onclick="tambah('2')">2</button>
+                <button type="button" class="btn" onclick="tambah('3')">3</button>
+                <button type="button" class="btn operator" onclick="tambah('-')">-</button>
+                
+                <button type="button" class="btn" onclick="tambah('0')">0</button>
+                <button type="button" class="btn" onclick="tambah('.')">.</button>
+                <button type="button" class="btn clear" onclick="hapus()">C</button>
+                <button type="button" class="btn operator" onclick="tambah('+')">+</button>
+            </div>
+
+            <br>
+            <button type="submit" class="btn equals">=</button>
+            <input type="hidden" name="ekspresi" id="ekspresi">
+        </form>
+    </div>
+
+    <script>
+        let ekspresi = "";
+
+        function tambah(val) {
+            ekspresi += val;
+            document.getElementById("layar").value = ekspresi;
+            document.getElementById("ekspresi").value = ekspresi;
+        }
+
+        function hapus() {
+            ekspresi = "";
+            document.getElementById("layar").value = "";
+            document.getElementById("ekspresi").value = "";
+        }
+    </script>
+</body>
+</html>
